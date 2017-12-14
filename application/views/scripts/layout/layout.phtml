@@ -1,0 +1,21 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<link type="image/x-icon" rel="shortcut icon" href="https://cdn1.alegra.com/images/favicon.ico">
+	<?php
+		echo $this->headLink()
+			->appendStylesheet('extjs/resources/css/ext-all.css');
+			
+	?>
+	
+	<?php
+		echo $this->headScript()
+			->appendFile('extjs/ext-all-debug.js')
+			->appendFile('app.js');
+	?>
+	<script type="text/javascript" src="https://cdn1.alegra.com/long-term/compressed/ext-lang-es.js"></script>
+</head>
+<body>
+	<?php  echo $this->layout()->content ?>
+</body>
+</html>
