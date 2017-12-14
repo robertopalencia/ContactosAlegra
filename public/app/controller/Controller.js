@@ -35,7 +35,7 @@ Ext.define('Alegra.controller.Controller', {
 	EditContact(grid, record) {
 		let editar = Ext.create('Alegra.view.Form2').show();
         
-		// Si se edita un record.
+		
 		if (record.stores != null) {
 			editar.down('form').loadRecord(record);
 		}
@@ -63,7 +63,7 @@ Ext.define('Alegra.controller.Controller', {
 		this.getStoreStore().sync({
 			success: function (batch, action) {
 				myMask.hide();
-				// Cargar de nuevo el store.
+				
 				if (add){
 					this.getStoreStore().load();
 				}
@@ -102,7 +102,7 @@ Ext.define('Alegra.controller.Controller', {
 						this.getStoreStore().sync({
 							success: function (batch, action) {
 								myMask.hide();
-								// Cargar de nuevo el store.
+								
 								this.getStoreStore().load();
 								let reader = batch.proxy.getReader();
 								Ext.Msg.alert('Hecho', reader.jsonData.message );
