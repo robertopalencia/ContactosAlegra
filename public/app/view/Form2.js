@@ -1,7 +1,7 @@
 Ext.define('Alegra.view.Form2', {
   extend: 'Ext.window.Window',
   alias : 'widget.contactForm',
-  requires: ['Ext.form.Panel','Ext.form.field.Text'],
+  requires: ['Ext.form.Panel','Ext.form.field.Text','Ext.form.VTypes'],
   title : 'Agregar Contacto',
   layout: 'fit',
   autoShow: true,
@@ -31,51 +31,69 @@ Ext.define('Alegra.view.Form2', {
           name: 'id',
           fieldLabel: 'id',
           hidden: true,
-        }, {
-          xtype: 'textfield',
-          name: 'name',
-          fieldLabel: '<strong>Nombre</strong>',
 			
         }, {
           xtype: 'textfield',
+          vtype:'alpha',
+          name: 'name',
+          fieldLabel: '<strong>Nombre</strong>',
+	  allowBlank: false,	
+			
+        }, {
+          xtype: 'textfield',
+	  vtype:'validacionNumero',
           name: 'identification',
           fieldLabel: '<strong>Identificación</strong>',
+          allowBlank: false,	
           
         }, {
           xtype: 'textfield',
           name: 'address',
           fieldLabel: '<strong>Dirección</strong>',
+          allowBlank: false,
           
         }, {
           xtype: 'textfield',
+	  vtype:'alpha',
           name: 'city',
           fieldLabel: '<strong>Ciudad</strong>',
-          
+	  allowBlank: false,
+			
+         
         }, {
           xtype: 'textfield',
           vtype: 'email',
           name: 'email',
           fieldLabel: '<strong>Email</strong>',
+	  allowBlank: false,
           
         }, {
           xtype: 'textfield',
+	  vtype:'validacionNumero',
           name: 'phonePrimary',
-          fieldLabel: '<strong>Teléfono 1</strong>',
+          fieldLabel: '<strong>Teléfono 1</strong>',	
+	  allowBlank: false,
           
         }, {
           xtype: 'textfield',
+	  vtype:'validacionNumero',
           name: 'phoneSecondary',
           fieldLabel: '<strong>Teléfono 2</strong>',
           allowBlank: true,
+			
         }, {
           xtype: 'textfield',
+          vtype:'validacionNumero',
           name: 'fax',
           fieldLabel: '<strong>Fax</strong>',
           allowBlank: true,
+		  
         }, {
           xtype: 'textfield',
+          vtype:'validacionNumero',
           name: 'mobile',
           fieldLabel: '<strong>Celular</strong>',
+          allowBlank: false,	
           
         }]
       }, {
@@ -89,10 +107,10 @@ Ext.define('Alegra.view.Form2', {
           editable: false,
           store: new Ext.data.SimpleStore({
             data: [[0, 'Ninguna'], [1, 'General']],
-  					fields : ['value', 'text'],
+  	    fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		    displayField : 'text',
+          displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'combobox',
@@ -102,10 +120,10 @@ Ext.define('Alegra.view.Form2', {
           editable: false,
           store: new Ext.data.SimpleStore({
             data: [[0, 'Ninguno']],
-  					fields : ['value', 'text'],
+  	    fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		    displayField : 'text',
+          displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'combobox',
@@ -125,7 +143,7 @@ Ext.define('Alegra.view.Form2', {
   					fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		    displayField : 'text',
+          displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'checkboxfield',
@@ -137,7 +155,6 @@ Ext.define('Alegra.view.Form2', {
           name: 'isProvider',
           itemId: 'Provider',
           fieldLabel: '<strong>Proveedor</strong>',
-			
         }, {
           xtype: 'textareafield',
           name: 'observations',
