@@ -34,7 +34,6 @@ Ext.define('Alegra.view.Form2', {
 			
         }, {
           xtype: 'textfield',
-          vtype:'alpha',
           name: 'name',
           fieldLabel: '<strong>Nombre</strong>',
 	  allowBlank: false,	
