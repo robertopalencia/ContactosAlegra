@@ -2,7 +2,7 @@ Ext.define('Alegra.controller.Controller', {
 	extend: 'Ext.app.Controller',
 	stores: ['Store'],
 	models: ['Model'],
-	views: ['Form', 'Grid', 'Show', 'Form2'],
+	views: ['Form', 'Form2', 'Grid', 'Show','Help'],
 	refs: [{
 		ref: 'contactPanel',
 		selector: 'panel',
