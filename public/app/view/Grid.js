@@ -59,7 +59,7 @@ Ext.define('Alegra.view.Grid', {
         handler: function(grid, rowIndex, colIndex) {
           var rec = grid.getStore().getAt(rowIndex);
           let formEdit = Ext.create('Alegra.view.Form').show();
-          // Si se edita un record.
+          
           if (rec.stores != null) {
             formEdit.down('form').loadRecord(rec);
           }
@@ -87,7 +87,7 @@ Ext.define('Alegra.view.Grid', {
       					store.sync({
       						success: function (batch, action) {
       							myMask.hide();
-      							// Cargar de nuevo el store.
+      							
       							store.load();
       							let reader = batch.proxy.getReader();
       							Ext.Msg.alert('Hecho', reader.jsonData.message );
@@ -107,7 +107,7 @@ Ext.define('Alegra.view.Grid', {
     ],
   }],
   initComponent: function() {
-    // theGrid = this;
+    
     this.dockedItems = [{
       xtype: 'toolbar',
       items: [{
