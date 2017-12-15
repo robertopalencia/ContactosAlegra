@@ -1,12 +1,20 @@
+Ext.apply(Ext.form.VTypes, {
+  validacionNumero : function(value, field) {
+   return /[0-9]/.test(value);
+  },
+  validacionNumeroText : 'Los datos ingresado no son válidos. Solo números',
+  validacionNumeroMask : /[0-9]/i
+});
+
 Ext.define('Alegra.view.Form', {
   extend: 'Ext.window.Window',
   alias : 'widget.contactForm',
-  requires: ['Ext.form.Panel','Ext.form.field.Text'],
+  requires: ['Ext.form.Panel','Ext.form.field.Text', 'Ext.form.VTypes'],
   title : 'Editar Contacto',
   layout: 'fit',
   autoShow: true,
   width: 650,
-    
+	
  
   icon:'https://cdn1.alegra.com/images/icons/page_edit.png',
   itemId: 'modalForm',
@@ -32,51 +40,69 @@ Ext.define('Alegra.view.Form', {
           name: 'id',
           fieldLabel: 'id',
           hidden: true,
-        }, {
-          xtype: 'textfield',
-          name: 'name',
-          fieldLabel: '<strong>Nombre</strong>',
 			
         }, {
           xtype: 'textfield',
+          vtype:'alpha',
+          name: 'name',
+          fieldLabel: '<strong>Nombre</strong>',
+          allowBlank: false,	
+			
+        }, {
+          xtype: 'textfield',
+          vtype:'validacionNumero',
           name: 'identification',
           fieldLabel: '<strong>Identificación</strong>',
+          allowBlank: false,	
           
         }, {
           xtype: 'textfield',
           name: 'address',
           fieldLabel: '<strong>Dirección</strong>',
+          allowBlank: false,
           
         }, {
           xtype: 'textfield',
+	  vtype:'alpha',
           name: 'city',
           fieldLabel: '<strong>Ciudad</strong>',
+	  allowBlank: false,
+			
          
         }, {
           xtype: 'textfield',
           vtype: 'email',
           name: 'email',
           fieldLabel: '<strong>Email</strong>',
+          allowBlank: false,
           
         }, {
           xtype: 'textfield',
+	  vtype:'validacionNumero',
           name: 'phonePrimary',
-          fieldLabel: '<strong>Teléfono 1</strong>',
+          fieldLabel: '<strong>Teléfono 1</strong>',	
+		  allowBlank: false,
           
         }, {
           xtype: 'textfield',
+          vtype:'validacionNumero',
           name: 'phoneSecondary',
           fieldLabel: '<strong>Teléfono 2</strong>',
           allowBlank: true,
+			
         }, {
           xtype: 'textfield',
+	  vtype:'validacionNumero',
           name: 'fax',
           fieldLabel: '<strong>Fax</strong>',
           allowBlank: true,
+		  
         }, {
           xtype: 'textfield',
+   	  vtype:'validacionNumero',
           name: 'mobile',
           fieldLabel: '<strong>Celular</strong>',
+          allowBlank: false,	
           
         }]
       }, {
@@ -126,7 +152,7 @@ Ext.define('Alegra.view.Form', {
   					fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		    displayField : 'text',
+ 	  displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'checkboxfield',
