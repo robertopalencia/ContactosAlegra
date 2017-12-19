@@ -60,7 +60,6 @@ Ext.define('Alegra.view.Grid', {
         handler: function(grid, rowIndex, colIndex) {
           var rec = grid.getStore().getAt(rowIndex);
           let formEdit = Ext.create('Alegra.view.Form').show();
-          // Si se edita un record.
           if (rec.stores != null) {
             formEdit.down('form').loadRecord(rec);
           }
@@ -86,7 +85,6 @@ Ext.define('Alegra.view.Grid', {
       					store.sync({
       						success: function (batch, action) {
       							myMask.hide();
-      							// Cargar de nuevo el store.
       							store.load();
       							let reader = batch.proxy.getReader();
       							Ext.Msg.alert('Hecho', reader.jsonData.message );
@@ -106,7 +104,6 @@ Ext.define('Alegra.view.Grid', {
     ],
   }],
   initComponent: function() {
-    // theGrid = this;
     this.dockedItems = [{
       xtype: 'toolbar',
       items: [{
@@ -120,30 +117,22 @@ Ext.define('Alegra.view.Grid', {
         icon   : 'https://cdn1.alegra.com/images/icons/delete.png',
         action: 'delete',
 		  
-      }, 
-             ],
+      },],
     },
-                        {
+    {
       xtype: 'toolbar',
       dock:'bottom',
       
-							items: [{
+	items: [{
 								
-								text: '<strong><h1>AYUDA</h1></strong>',
-        icon   : 'https://cdn1.alegra.com/images/icons/help.png',
-        
-								handler: function(){
-Ext.create('Alegra.view.Help').Show();
-}
-							}],
-              
-							
-		
-    },
-                        
-                      
-                        
-                        {
+		text: '<strong>AYUDA</strong>',
+        	icon   : 'https://cdn1.alegra.com/images/icons/help.png',
+       	 	handler: function(){
+					Ext.create('Alegra.view.Help').Show();
+				   }
+		}],
+     },
+     {
       xtype: 'pagingtoolbar',
       dock: 'bottom',
       store: 'Store',
