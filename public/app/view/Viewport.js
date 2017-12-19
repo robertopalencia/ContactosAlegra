@@ -4,6 +4,8 @@ Ext.define('Alegra.view.Viewport', {
 	requires: [
 		'Alegra.view.Grid',
 		'Alegra.view.Form',
+		'Alegra.view.Form2',
+		'Alegra.view.Help',
 		'Alegra.view.Show',
 	],
 	initComponent: function() {
