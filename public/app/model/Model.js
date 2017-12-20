@@ -23,7 +23,7 @@ Ext.define('Alegra.model.Model', {
     
     validators: {
         name: [
-            'presence',
+           
             { type: 'length', max:90 },
         ],
         identification: [
