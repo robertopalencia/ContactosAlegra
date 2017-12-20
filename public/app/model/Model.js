@@ -19,31 +19,4 @@ Ext.define('Alegra.model.Model', {
 		'observations',
 	],
 	
-	validators: {
-        name: [
-            'presence',
-            { type: 'length', max:90 },
-        ],
-        identificacion: [
-            { type: 'length', max:45 },
-        ],
-        email: [
-            { type: 'length', max:100 },
-        ],
-        phonePrimary: [
-            { type: 'length', max:45 },
-        ],
-        phoneSecundary: [
-            { type: 'length', max:45 },
-        ],
-        fax: [
-            { type: 'length', max:45 },
-        ],
-        mobile: [
-            { type: 'length', max:45 },
-        ],
-        observations: [
-            { type: 'length', max:500 },
-        ],
-    },
-});
+	
