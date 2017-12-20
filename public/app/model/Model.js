@@ -1,7 +1,7 @@
 Ext.define('Alegra.model.Model', {
 	extend: 'Ext.data.Model',
 	fields: [
-		 { name: 'id', type: 'int', persist: false },
+	{ name: 'id', type: 'int', persist: false },
         { name: 'name', type: 'string' },
         { name: 'identificacion', type: 'string' },
         { name: 'email', type: 'string' },
