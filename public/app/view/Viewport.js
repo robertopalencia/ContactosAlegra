@@ -3,10 +3,11 @@ Ext.define('Alegra.view.Viewport', {
 	layout: 'fit',
 	requires: [
 		'Alegra.view.Grid',
-		'Alegra.view.Form',
-		'Alegra.view.Form2',
-		'Alegra.view.Help',
+		'Alegra.view.Add',
+		'Alegra.view.Edit',
 		'Alegra.view.Show',
+        'Alegra.view.Help',
+        
 	],
 	initComponent: function() {
 		var me = this;
