@@ -26,7 +26,7 @@ Ext.define('Alegra.controller.Controller', {
 			},
 			
 			'contactGrid button[action=delete]': {
-				click: this.destroyContact,
+				click: this.deleteContact,
 			},
 			
 		});
@@ -91,7 +91,7 @@ Ext.define('Alegra.controller.Controller', {
 			scope: this,
 		});
 	},
-	destroyContact(button) {
+	deleteContact(button) {
 		let grid = this.getContactGrid();
 		let records = grid.getSelectionModel().getSelection();
 		let store = this.getStoreStore();
@@ -100,6 +100,8 @@ Ext.define('Alegra.controller.Controller', {
 
 		if (records.length > 0) {
 			Ext.Msg.show({
+				title,
+                                msg,
 				buttons: Ext.Msg.YESNOCANCEL,
 				icon: Ext.MessageBox.QUESTION,
 				scope: this,
