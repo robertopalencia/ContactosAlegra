@@ -18,5 +18,6 @@ Ext.define('Alegra.model.Model', {
 		'isProvider',
 		'observations',
 	],
-	
+	});
+
 	
