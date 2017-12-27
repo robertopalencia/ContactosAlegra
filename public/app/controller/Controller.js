@@ -130,5 +130,10 @@ Ext.define('Alegra.controller.Controller', {
 				},
 			});
 		}
+		
+		else {
+          		  Ext.Msg.alert('¡AVISO!', '<strong>Seleccione 2 o mas Contactos</strong>' );
+                }
+		
 	},
 });
