@@ -70,7 +70,7 @@ Ext.define('Alegra.view.Grid', {
           let rec = grid.getStore().getAt(rowIndex);
           let store = grid.getStore();
       		Ext.Msg.show({
-      			title: 'Eliminar cliente',
+      			title: 'Eliminar Contacto',
       			msg: '¿Estás seguro de que deseas eliminar el contacto?',
       			buttons: Ext.Msg.YESNOCANCEL,
       			icon: Ext.MessageBox.QUESTION,
