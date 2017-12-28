@@ -6,8 +6,6 @@ Ext.define('Alegra.view.Add', {
   layout: 'fit',
   autoShow: true,
   width: 650,
-    
- 
   icon:'https://cdn1.alegra.com/images/icons/add.png',
   itemId: 'modalAdd',
   initComponent: function() {
@@ -16,7 +14,6 @@ Ext.define('Alegra.view.Add', {
       xtype: 'form',
       padding: '5 5 0 5',
       border: false,
-      style: 'background-color: #fff;',
       fieldDefaults: {
         anchor: '100%',
         labelAlign: 'right',
@@ -97,10 +94,10 @@ Ext.define('Alegra.view.Add', {
           editable: false,
           store: new Ext.data.SimpleStore({
             data: [[0, 'Ninguna'], [1, 'General']],
-  					fields : ['value', 'text'],
+  	    fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		  displayField : 'text',
+          displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'combobox',
@@ -110,10 +107,10 @@ Ext.define('Alegra.view.Add', {
           editable: false,
           store: new Ext.data.SimpleStore({
             data: [[0, 'Ninguno']],
-  					fields : ['value', 'text'],
+  	    fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		    displayField : 'text',
+          displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'combobox',
@@ -130,10 +127,10 @@ Ext.define('Alegra.view.Add', {
               [4, '30 días'],
               [5, '60 días'],
             ],
-  					fields : ['value', 'text'],
+  	    fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		  displayField : 'text',
+  	  displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'checkboxfield',
@@ -166,7 +163,7 @@ Ext.define('Alegra.view.Add', {
         icon: 'https://cdn1.alegra.com/images/icons/cancel.png',
         text: 'Cancelar',
         scope: this,
-        handler: this.close,
+        handler: this.close
       }],
     }];
     this.callParent(arguments);
