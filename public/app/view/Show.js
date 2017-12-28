@@ -22,6 +22,7 @@ Ext.define('Alegra.view.Show', {
         xtype: 'displayfield',
         name: 'name',
         fieldLabel: '<strong>Nombre:</strong>',
+        style : 'background-color:#DCDCDC',
       }, {
         xtype: 'displayfield',
         name: 'identification',
@@ -30,6 +31,7 @@ Ext.define('Alegra.view.Show', {
         xtype: 'displayfield',
         name: 'phonePrimary',
         fieldLabel: '<strong>Telefono 1:</strong>',
+        style : 'background-color:#DCDCDC',
       }, {
         xtype: 'displayfield',
         name: 'phoneSecondary',
@@ -38,6 +40,7 @@ Ext.define('Alegra.view.Show', {
         xtype: 'displayfield',
         name: 'mobile',
         fieldLabel: '<strong>Celular:</strong>',
+        style : 'background-color:#DCDCDC',
       }, {
         xtype: 'displayfield',
         name: 'address',
@@ -46,6 +49,7 @@ Ext.define('Alegra.view.Show', {
         xtype: 'displayfield',
         name: 'city',
         fieldLabel: '<strong>Ciudad:</strong>',
+        style : 'background-color:#DCDCDC',
       }, {
         xtype: 'displayfield',
         vtype: 'email',
@@ -55,6 +59,7 @@ Ext.define('Alegra.view.Show', {
         xtype: 'displayfield',
         name: 'observations',
         fieldLabel: '<strong>Observaciones:</strong>',
+        style : 'background-color:#DCDCDC',
       }],
     }];
     this.dockedItems = [{
