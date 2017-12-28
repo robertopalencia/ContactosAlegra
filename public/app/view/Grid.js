@@ -1,4 +1,4 @@
-let selmodel = Ext.create('Ext.selection.CheckboxModel');
+var selmodel = Ext.create('Ext.selection.CheckboxModel');
 
 Ext.define('Alegra.view.Grid', {
   extend: 'Ext.grid.Panel',
@@ -49,7 +49,7 @@ Ext.define('Alegra.view.Grid', {
         handler: function(grid, rowIndex, colIndex, item, e, record, row) {
           
           var rec = grid.getStore().getAt(rowIndex);
-          let formShow = Ext.create('Alegra.view.Show').show();
+          var formShow = Ext.create('Alegra.view.Show').show();
           formShow.down('form').loadRecord(rec);
         },
       }, {
@@ -57,7 +57,7 @@ Ext.define('Alegra.view.Grid', {
         tooltip: 'Editar',
         handler: function(grid, rowIndex, colIndex) {
           var rec = grid.getStore().getAt(rowIndex);
-          let formEdit = Ext.create('Alegra.view.Edit').show();
+          var formEdit = Ext.create('Alegra.view.Edit').show();
           
           if (rec.stores != null) {
             formEdit.down('form').loadRecord(rec);
@@ -67,8 +67,8 @@ Ext.define('Alegra.view.Grid', {
         icon   : 'https://cdn1.alegra.com/images/icons/delete.png',
         tooltip: 'Eliminar',
         handler: function(grid, rowIndex, colIndex) {
-          let rec = grid.getStore().getAt(rowIndex);
-          let store = grid.getStore();
+          var rec = grid.getStore().getAt(rowIndex);
+          var store = grid.getStore();
       		Ext.Msg.show({
       			title: 'Eliminar Contacto',
       			msg: '¿Estás seguro de que deseas eliminar el contacto?',
@@ -78,7 +78,7 @@ Ext.define('Alegra.view.Grid', {
       			width: 400,
       			fn: function(btn) {
       				if (btn == 'yes') {
-                let myMask = new Ext.LoadMask(Ext.getBody(), { msg:"Por favor, espere..." });
+                var myMask = new Ext.LoadMask(Ext.getBody(), { msg:"Por favor, espere..." });
     						myMask.show();
       					store.remove(rec);
       					store.sync({
@@ -86,12 +86,12 @@ Ext.define('Alegra.view.Grid', {
       							myMask.hide();
       							
       							store.load();
-      							let reader = batch.proxy.getReader();
+      							var reader = batch.proxy.getReader();
       							Ext.Msg.alert('Hecho', reader.jsonData.message );
       						},
       						failure: function (batch, action) {
       							myMask.hide();
-      							let reader = batch.proxy.getReader();
+      							var reader = batch.proxy.getReader();
       							Ext.Msg.alert('Fallo', reader.jsonData ? reader.jsonData.message : '¡Algo anda mal!');
       						},
     							scope: this,
@@ -124,24 +124,15 @@ Ext.define('Alegra.view.Grid', {
                         {
       xtype: 'toolbar',
       dock:'bottom',
-      
-							items: [{
-								
-								text: '<strong><h1>AYUDA</h1></strong>',
+      items: [{						
+	text: '<strong><h1>AYUDA</h1></strong>',
         icon   : 'https://cdn1.alegra.com/images/icons/help.png',
-        
-								handler: function(){
-Ext.create('Alegra.view.Help').Show();
-}
-							}],
-              
-							
-		
-    },
-                        
-                      
-                        
-                        {
+        handler: function(){
+				Ext.create('Alegra.view.Help').Show();
+	}
+       }],		
+    },              
+    {
       xtype: 'pagingtoolbar',
       dock: 'bottom',
       store: 'Store',
