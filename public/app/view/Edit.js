@@ -13,8 +13,6 @@ Ext.define('Alegra.view.Edit', {
   layout: 'fit',
   autoShow: true,
   width: 650,
-    
- 
   icon:'https://cdn1.alegra.com/images/icons/page_edit.png',
   itemId: 'modalEdit',
   initComponent: function() {
@@ -103,10 +101,10 @@ Ext.define('Alegra.view.Edit', {
           editable: false,
           store: new Ext.data.SimpleStore({
             data: [[0, 'Ninguna'], [1, 'General']],
-  					fields : ['value', 'text'],
+  	    fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		    displayField : 'text',
+          displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'combobox',
@@ -116,10 +114,10 @@ Ext.define('Alegra.view.Edit', {
           editable: false,
           store: new Ext.data.SimpleStore({
             data: [[0, 'Ninguno']],
-  					fields : ['value', 'text'],
+  	    fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		    displayField : 'text',
+          displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'combobox',
@@ -136,10 +134,10 @@ Ext.define('Alegra.view.Edit', {
               [4, '30 días'],
               [5, '60 días'],
             ],
-  					fields : ['value', 'text'],
+  	    fields : ['value', 'text'],
   				}),
           valueField : 'value',
-  		  displayField : 'text',
+  	  displayField : 'text',
           allowBlank: true,
         }, {
           xtype: 'checkboxfield',
