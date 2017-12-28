@@ -30,35 +30,34 @@ Ext.define('Alegra.controller.Controller', {
 	},
 	
 	LoadAddContact(grid, record) {
-		let agregar = Ext.create('Alegra.view.Add').show();
+		var agregar = Ext.create('Alegra.view.Add').show();
         
 		
 		if (record.stores != null) {
-			agregar.down('form').loadRecord(record);
-			
+			agregar.down('form').loadRecord(record);	
 		}
 	},
 	AddContact(button) {
-		let win = button.up('window');
-		let form   = win.down('form');
-		let record = form.getRecord();
-		let values = form.getValues();
+		var win = button.up('window');
+		var form   = win.down('form');
+		var record = form.getRecord();
+		var values = form.getValues();
 		record = Ext.create('Alegra.model.Model');
         record.set(values);
         this.getStoreStore().add(record);
-        let myMask = new Ext.LoadMask(Ext.getBody(), { msg:"Por favor, espere..." });
+        var myMask = new Ext.LoadMask(Ext.getBody(), { msg:"Por favor, espere..." });
 		myMask.show();
 		this.getStoreStore().sync({
 			success: function (batch, action) {
 				myMask.hide();
 				this.getStoreStore().load();
-				let reader = batch.proxy.getReader();
+				var reader = batch.proxy.getReader();
 				Ext.Msg.alert('Hecho', 'Contacto Agregado exitosamente');
 				win.close();
 			},
 			failure: function (batch, action) {
 				myMask.hide();
-				let reader = batch.proxy.getReader();
+				var reader = batch.proxy.getReader();
 				Ext.Msg.alert('Fallo', reader.jsonData ? reader.jsonData.message : '¡Algo anda mal!');
 			},
 			scope: this,
@@ -66,34 +65,34 @@ Ext.define('Alegra.controller.Controller', {
 	},
 	
 	EditContact(button) {
-		let win = button.up('window');
-		let form   = win.down('form');
-		let record = form.getRecord();
-		let values = form.getValues();
+		var win = button.up('window');
+		var form   = win.down('form');
+		var record = form.getRecord();
+		var values = form.getValues();
 		record.set(values);
-		let myMask = new Ext.LoadMask(Ext.getBody(), { msg:"Por favor, espere..." });
+		var myMask = new Ext.LoadMask(Ext.getBody(), { msg:"Por favor, espere..." });
 		myMask.show();
 		this.getStoreStore().sync({
 			success: function (batch, action) {
 				myMask.hide();
-				let reader = batch.proxy.getReader();
+				var reader = batch.proxy.getReader();
 				Ext.Msg.alert('Hecho', 'Contacto Editado Exitosamente');
 				win.close();
 			},
 			failure: function (batch, action) {
 				myMask.hide();
-				let reader = batch.proxy.getReader();
+				var reader = batch.proxy.getReader();
 				Ext.Msg.alert('Fallo', reader.jsonData ? reader.jsonData.message : '¡Algo anda mal!');
 			},
 			scope: this,
 		});
 	},
 	deleteContact(button) {
-		let grid = this.getContactGrid();
-		let records = grid.getSelectionModel().getSelection();
-		let store = this.getStoreStore();
-		let title = 'Eliminar ' + records.length + ' Contactos';
-		let msg = '¿Estás seguro de que deseas eliminar los ' + records.length + ' contactos seleccionados?';
+		var grid = this.getContactGrid();
+		var records = grid.getSelectionModel().getSelection();
+		var store = this.getStoreStore();
+		var title = 'Eliminar ' + records.length + ' Contactos';
+		var msg = '¿Estás seguro de que deseas eliminar los ' + records.length + ' contactos seleccionados?';
 
 		if (records.length > 1) {
 			Ext.Msg.show({
@@ -105,7 +104,7 @@ Ext.define('Alegra.controller.Controller', {
 				width: 500,
 				fn: function(btn) {
 					if (btn == 'yes') {
-						let myMask = new Ext.LoadMask(Ext.getBody(), { msg:"Por favor, espere..." });
+						var myMask = new Ext.LoadMask(Ext.getBody(), { msg:"Por favor, espere..." });
 						myMask.show();
 						store.remove(records);
 						this.getStoreStore().sync({
@@ -113,12 +112,12 @@ Ext.define('Alegra.controller.Controller', {
 								myMask.hide();
 								
 								this.getStoreStore().load();
-								let reader = batch.proxy.getReader();
+								var reader = batch.proxy.getReader();
 								Ext.Msg.alert('Hecho', reader.jsonData.message );
 							},
 							failure: function (batch, action) {
 								myMask.hide();
-								let reader = batch.proxy.getReader();
+								var reader = batch.proxy.getReader();
 								Ext.Msg.alert('Fallo', reader.jsonData ? reader.jsonData.message : '¡Algo anda mal!');
 							},
 							scope: this,
