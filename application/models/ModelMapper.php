@@ -48,7 +48,7 @@ class Application_Model_ModelMapper {
   }
 
   
-  public function upsert(Application_Model_ModelContact $contact)
+  public function Read(Application_Model_ModelContact $contact)
   {
   
     $type = array();
@@ -95,75 +95,7 @@ class Application_Model_ModelMapper {
     }
     return $data;
   }
-  
-  public function fetchAll($type = '', $query = '', $start = 0, $limit = 20)
-  {
-    $params = "?start=$start&limit=$limit&metadata=true";
-    if (!empty($type) && in_array($type, array('client', 'provider'))) {
-      $params.= "&type=$type";
-    }
-    if (!empty($query)) {
-      $params.= "&query=$query";
-    }
-
-    $this->_client->setUri($this->_uri . $params);
-    $response = $this->_client->request('GET');
-    $data = $response->getBody();
-    $data = json_decode($data, true);
-
-    if (isset($data['code']) && $data['code'] !== 200) {
-      return $data;
-    }
-
-    $results = self::_parseData($data['data']);
-    $contacts = array();
-
-    foreach ($results as $row) {
-      $contact = new Application_Model_ModelContact($row);
-      $contacts[] = $contact;
-    }
-
-    return [
-      'total' => $data['metadata']['total'],
-      'data' => $contacts,
-    ];
-  }
-
-  public function findById($id)
-  {
-    $this->_client->setUri($this->_uri . "/$id");
-    $response = $this->_client->request('GET');
-
-    $data = $response->getBody();
-    $data = json_decode($data, true);
-
-    if (isset($data['code']) && $data['code'] !== 200) {
-      return $data;
-    }
-
-    $result = self::_parseData([$data]);
-    $contact = new Application_Model_ModelContact($result[0]);
-
-    return [
-      'data' => $contact,
-    ];
-  }
-
-  public function delete($id)
-  {
-    $this->_client->setUri($this->_uri . "/$id");
-    $response = $this->_client->request('DELETE');
-    $data = $response->getBody();
-    $data = json_decode($data, true);
-
-    if (isset($data['code']) && $data['code'] !== 200) {
-      return $data;
-    }
-
-    return $data;
-  }
-
-  private function _parseData($data = []) {
+    private function _Data($data = []) {
     $i = 0;
     foreach ($data as $key => $value) {
       $data[$i]['isClient'] = false;
@@ -187,4 +119,72 @@ class Application_Model_ModelMapper {
     }
     return $data;
   }
-}
+
+  
+  public function Search($type = '', $query = '', $start = 0, $limit = 20)
+  {
+    $params = "?start=$start&limit=$limit&metadata=true";
+    if (!empty($type) && in_array($type, array('client', 'provider'))) {
+      $params.= "&type=$type";
+    }
+    if (!empty($query)) {
+      $params.= "&query=$query";
+    }
+
+    $this->_client->setUri($this->_uri . $params);
+    $response = $this->_client->request('GET');
+    $data = $response->getBody();
+    $data = json_decode($data, true);
+
+    if (isset($data['code']) && $data['code'] !== 200) {
+      return $data;
+    }
+
+    $results = self::_Data($data['data']);
+    $contacts = array();
+
+    foreach ($results as $row) {
+      $contact = new Application_Model_ModelContact($row);
+      $contacts[] = $contact;
+    }
+
+    return [
+      'total' => $data['metadata']['total'],
+      'data' => $contacts,
+    ];
+  }
+
+  public function Id($id)
+  {
+    $this->_client->setUri($this->_uri . "/$id");
+    $response = $this->_client->request('GET');
+
+    $data = $response->getBody();
+    $data = json_decode($data, true);
+
+    if (isset($data['code']) && $data['code'] !== 200) {
+      return $data;
+    }
+
+    $result = self::_Data([$data]);
+    $contact = new Application_Model_ModelContact($result[0]);
+
+    return [
+      'data' => $contact,
+    ];
+  }
+
+  public function Delete($id)
+  {
+    $this->_client->setUri($this->_uri . "/$id");
+    $response = $this->_client->request('DELETE');
+    $data = $response->getBody();
+    $data = json_decode($data, true);
+
+    if (isset($data['code']) && $data['code'] !== 200) {
+      return $data;
+    }
+
+    return $data;
+  }
+    }
