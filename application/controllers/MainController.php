@@ -29,7 +29,21 @@ class MainController extends Zend_Controller_Action
     
   }
 
-  
+  public function createAction() {
+	  
+    $this->getHelper('Layout')->disableLayout();
+    $this->getHelper('ViewRenderer')->setNoRender();
+
+    $params = (array) json_decode($this->getRequest()->getPost('data'));
+    unset($params['id']);
+
+    $contact = new Application_Model_ModelMapper();
+    $form = new Application_Model_ModelContact($params);
+    $data = $contact->Read($form);
+
+    $this->getResponse()->setHeader('Content-Type', 'application/json');
+    return $this->_helper->json->sendJson($data);
+  }
   public function indexAction() {
 	  
     $this->getHelper('Layout')->disableLayout();
@@ -38,7 +52,7 @@ class MainController extends Zend_Controller_Action
     
     if (null != ($id = $this->_request->getQuery('id'))) {
       $contacts = new Application_Model_ModelMapper();
-      $data = $contacts->findById($id);
+      $data = $contacts->Id($id);
 
       $this->getResponse()->setHeader('Content-Type', 'application/json');
       return $this->_helper->json->sendJson($data);
@@ -50,29 +64,28 @@ class MainController extends Zend_Controller_Action
     $page = intval($this->_request->getQuery('page'));
 
     $contacts = new Application_Model_ModelMapper();
-    $data = $contacts->fetchAll($type, '', $start, $limit);
-
-    $this->getResponse()->setHeader('Content-Type', 'application/json');
-    return $this->_helper->json->sendJson($data);
-  }
-
-  public function createAction() {
-	  
-    $this->getHelper('Layout')->disableLayout();
-    $this->getHelper('ViewRenderer')->setNoRender();
-
-    $params = (array) json_decode($this->getRequest()->getPost('data'));
-    unset($params['id']);
-
-    $contact = new Application_Model_ModelMapper();
-    $form = new Application_Model_ModelContact($params);
-    $data = $contact->upsert($form);
+    $data = $contacts->Search($type, '', $start, $limit);
 
     $this->getResponse()->setHeader('Content-Type', 'application/json');
     return $this->_helper->json->sendJson($data);
   }
 	
-	public function deleteAction() {
+   public function updateAction() {
+		
+    $this->getHelper('Layout')->disableLayout();
+    $this->getHelper('ViewRenderer')->setNoRender();
+
+    $params = (array) json_decode($this->getRequest()->getPost('data'));
+
+    $contact = new Application_Model_ModelMapper();
+    $form = new Application_Model_ModelContact($params);
+    $data = $contact->Read($form);
+
+    $this->getResponse()->setHeader('Content-Type', 'application/json');
+    return $this->_helper->json->sendJson($data);
+  }
+
+  public function deleteAction() {
 		
     $this->getHelper('Layout')->disableLayout();
     $this->getHelper('ViewRenderer')->setNoRender();
@@ -82,7 +95,7 @@ class MainController extends Zend_Controller_Action
     $contact = new Application_Model_ModelMapper();
     if (count($param) > 1) {
       foreach ($param as $key => $value) {
-        $data = $contact->delete($value->id);
+        $data = $contact->Delete($value->id);
       }
       $this->getResponse()->setHeader('Content-Type', 'application/json');
       if (isset($data['code']) && '200' == $data['code']) {
@@ -92,27 +105,10 @@ class MainController extends Zend_Controller_Action
         ]);
       }
     }
-    $data = $contact->delete($param->id);
+    $data = $contact->Delete($param->id);
 
     $this->getResponse()->setHeader('Content-Type', 'application/json');
     return $this->_helper->json->sendJson($data);
   }
-  
-	public function updateAction() {
-		
-    $this->getHelper('Layout')->disableLayout();
-    $this->getHelper('ViewRenderer')->setNoRender();
-
-    $params = (array) json_decode($this->getRequest()->getPost('data'));
-
-    $contact = new Application_Model_ModelMapper();
-    $form = new Application_Model_ModelContact($params);
-    $data = $contact->upsert($form);
-
-    $this->getResponse()->setHeader('Content-Type', 'application/json');
-    return $this->_helper->json->sendJson($data);
-  }
-
-  
   
 }
